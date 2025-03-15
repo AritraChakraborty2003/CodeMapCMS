@@ -18,7 +18,6 @@ interface SlideProps {
 
 const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const slideRef = useRef<HTMLLIElement>(null);
-
   const xRef = useRef(0);
   const yRef = useRef(0);
   const frameRef = useRef<number | null>(null);
@@ -26,18 +25,14 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   useEffect(() => {
     const animate = () => {
       if (!slideRef.current) return;
-
       const x = xRef.current;
       const y = yRef.current;
-
       slideRef.current.style.setProperty("--x", `${x}px`);
       slideRef.current.style.setProperty("--y", `${y}px`);
-
       frameRef.current = requestAnimationFrame(animate);
     };
 
     frameRef.current = requestAnimationFrame(animate);
-
     return () => {
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current);
@@ -48,7 +43,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const handleMouseMove = (event: React.MouseEvent) => {
     const el = slideRef.current;
     if (!el) return;
-
     const r = el.getBoundingClientRect();
     xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
     yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
@@ -59,8 +53,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     yRef.current = 0;
   };
 
-  const imageLoaded = (img: HTMLImageElement) => {
-    img.style.opacity = "1";
+  const imageLoaded = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    event.currentTarget.style.opacity = "1";
   };
 
   const { src, button, title } = slide;
@@ -69,7 +63,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10 "
+        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -98,8 +92,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             }}
             alt={title}
             src={src}
-            onLoadingComplete={(img) => imageLoaded(img)}
-            priority // Similar to loading="eager"
+            onLoad={imageLoaded}
+            priority
             fill
           />
           {current === index && (
@@ -112,7 +106,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             current === index ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-extrabold relative">
+          <h2 className="text-2xl md:text-2xl lg:text-4xl font-extrabold relative">
             {title}
           </h2>
           <div className="flex justify-center">
@@ -177,7 +171,7 @@ export function Carousel({ slides }: CarouselProps) {
 
   return (
     <div
-      className="relative w-[90vw] h-[70vmin] mx-auto"
+      className="relative w-[90vw] h-[90vmin] lg:h-[70vmin] mx-auto"
       aria-labelledby={`carousel-heading-${id}`}
     >
       <ul
@@ -197,13 +191,12 @@ export function Carousel({ slides }: CarouselProps) {
         ))}
       </ul>
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+2rem)]">
+      <div className="absolute flex justify-center w-full top-auto bottom-2 lg:top-[calc(100%+2rem)] lg:bottom-auto">
         <CarouselControl
           type="previous"
           title="Go to previous slide"
           handleClick={handlePreviousClick}
         />
-
         <CarouselControl
           type="next"
           title="Go to next slide"
@@ -213,3 +206,5 @@ export function Carousel({ slides }: CarouselProps) {
     </div>
   );
 }
+
+export default Carousel;

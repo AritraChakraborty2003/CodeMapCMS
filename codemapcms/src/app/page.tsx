@@ -1,6 +1,8 @@
 "use client";
 import { Carousel } from "@/Components/ui/carousel";
 import Header from "@/Components/ui/Header";
+import Iridescence from "@/Components/ui/Iridescence";
+
 export default function Home() {
   const slideData = [
     {
@@ -72,7 +74,18 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="relative overflow-hidden w-full h-full py-20">
+      <div className="max-w-screen-2xl h-[75vh] lg:h-[78vh]">
+        <Iridescence
+          color={[1, 1, 1]}
+          mouseReact={false}
+          amplitude={0.1}
+          speed={1.0}
+        />
+      </div>
+
+      <div className="relative space-y-2 py-8 lg:space-y-4 overflow-hidden w-full h-full lg:mt-[-4vmin] lg:py-20">
+        <p className="font-extrabold text-5xl lg:text-6xl ml-2">Our Features</p>
+
         <Carousel slides={slideData} />
       </div>
     </>
