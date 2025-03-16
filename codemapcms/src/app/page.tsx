@@ -1,4 +1,5 @@
 "use client";
+import AuthModal from "@/Components/ui/AuthModal";
 import { Carousel } from "@/Components/ui/carousel";
 import Header from "@/Components/ui/Header";
 import Iridescence from "@/Components/ui/Iridescence";
@@ -73,7 +74,7 @@ export default function Home() {
   ];
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className="max-w-screen-2xl h-[75vh] lg:h-[78vh]">
         <Iridescence
           color={[1, 1, 1]}
@@ -87,7 +88,9 @@ export default function Home() {
         <p className="font-extrabold text-5xl lg:text-6xl ml-2">Our Features</p>
 
         <Carousel slides={slideData} />
-      </div>
+      </div> */}
+
+      <AuthModal />
     </>
   );
 }
