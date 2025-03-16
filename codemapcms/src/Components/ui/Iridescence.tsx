@@ -155,10 +155,10 @@ export default function Iridescence({
     >
       {/* Text overlay */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <p className="bg-gradient-to-b from-black to-purple-700 bg-clip-text text-transparent font-extrabold text-[13vmin] lg:text-8xl">
+        <p className="bg-gradient-to-b from-black to-purple-700 bg-clip-text text-transparent font-extrabold text-[13vmin] lg:text-[16vmin]">
           ContenZ CMS
         </p>
-        <p className="lg:mt-4 bg-gradient-to-b from-black  to-purple-700 bg-clip-text text-transparent font-extrabold text-sm lg:text-lg">
+        <p className="lg:mt-2 bg-gradient-to-b from-black  to-purple-700 bg-clip-text text-transparent font-medium text-sm lg:text-lg">
           (&nbsp;CMS powered by Codemap&nbsp;)
         </p>
 

@@ -1,6 +1,7 @@
 "use client";
-import AuthModal from "@/Components/ui/AuthModal";
 import { Carousel } from "@/Components/ui/carousel";
+import Clients from "@/Components/ui/Clients";
+import Footer from "@/Components/ui/Footer";
 import Header from "@/Components/ui/Header";
 import Iridescence from "@/Components/ui/Iridescence";
 
@@ -74,8 +75,8 @@ export default function Home() {
   ];
   return (
     <>
-      {/* <Header />
-      <div className="max-w-screen-2xl h-[75vh] lg:h-[78vh]">
+      <Header />
+      <div className="max-w-screen-2xl h-[84vh] lg:h-[86vh]">
         <Iridescence
           color={[1, 1, 1]}
           mouseReact={false}
@@ -83,14 +84,14 @@ export default function Home() {
           speed={1.0}
         />
       </div>
-
-      <div className="relative space-y-2 py-8 lg:space-y-4 overflow-hidden w-full h-full lg:mt-[-4vmin] lg:py-20">
+      <Clients />
+      <div className="relative space-y-2 py-8 lg:space-y-4 overflow-hidden w-full h-full py-14 lg:mt-[-2vmin] lg:py-28">
         <p className="font-extrabold text-5xl lg:text-6xl ml-2">Our Features</p>
 
         <Carousel slides={slideData} />
-      </div> */}
+      </div>
 
-      <AuthModal />
+      <Footer />
     </>
   );
 }

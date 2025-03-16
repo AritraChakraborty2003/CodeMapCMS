@@ -3,3 +3,7 @@
 .primary-bg {
   background-color: "#000000";
 }
+
+input:focus {
+  outline: none;
+}
